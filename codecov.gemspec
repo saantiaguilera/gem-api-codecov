@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{Codecov gem lets you run codecov for any language from ruby}
   spec.description   = ''
   spec.homepage      = "https://www.github.com/saantiaguilera/ruby-api-codecov"
-  spec.license       = "BSD-3"
+  spec.license       = "BSD-3-Clause"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
@@ -28,8 +28,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "shellwords"
-  spec.add_dependency "open-uri"
+  #spec.add_dependency "shellwords"
+  #spec.add_dependency "open-uri"
 
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"
