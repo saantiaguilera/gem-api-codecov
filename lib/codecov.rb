@@ -13,15 +13,20 @@ module Codecov
 	NAME = 'codecov'.freeze
 	VERSION = '1.0.0'.freeze
 
+	class << self
+    attr_accessor :CODECOV_DESTINATION
+    attr_accessor :SCRIPT_ENDPOINT
+  end
+
 	##
 	# Codecov absolute file destionation
 	##
-	CODECOV_DESTINATION = "~/codecov_script.sh"
+	self.CODECOV_DESTINATION = "codecov_script.sh"
 
 	##
 	# Script endpoint from where to download the codecov file
 	##
-	SCRIPT_ENDPOINT = 'https://codecov.io/bash'.freeze
+	self.SCRIPT_ENDPOINT = 'https://codecov.io/bash'.freeze
 
 	##
 	# PUBLIC
@@ -35,7 +40,7 @@ module Codecov
 	# Defaults to "~/codecov_script.sh"
 	##
 	def self.set_script_destination(dest)
-		CODECOV_DESTINATION = dest.to_s.shellescape
+		self.CODECOV_DESTINATION = dest.to_s.shellescape
 	end
 
 	##
@@ -46,7 +51,7 @@ module Codecov
 	# @params map with parameters for codecov
 	# Eg.
 	# params = { 
-	#   'c' => '',
+	#   'c' => nil,
 	#   'X' => [ 'gcov', 'coveragepy', 'fix' ],
 	#   'R' => 'root_dir',
 	#   't' => 'MY_ACCESS_TOKEN'
@@ -64,18 +69,26 @@ module Codecov
 	# to the bash script -h function :)
 	##
 	def self.run(params = nil)
-		download_script unless File.file? CODECOV_DESTINATION
+		download_script unless File.file? self.CODECOV_DESTINATION
 
 		flags = params.map { |k,v|
-			flag = k.to_s.shellescape unless v
-			flag = "-#{k.to_s.shellescape} #{v.to_s.shellescape}" if v.is_a? String
-			flag = v.each { |param| "-#{k.to_s.shellescape} #{param.to_s.shellescape}"} if v.is_a? Array
-
-			raise "Cant understand '#{k}' => '#{v}'" if flag.nil?
-			return flag
+			puts "reading #{k} - #{v}"
+			case
+				when v.nil?
+					"-#{k.to_s.shellescape}"
+				when v.is_a?(String)
+					"-#{k.to_s.shellescape} #{v.to_s.shellescape}"
+				when v.is_a?(Array)
+					v.flat_map { |iv| [ "-#{k.to_s.shellescape}", iv.to_s.shellescape ] }[0...-1].join(' ')
+				else 
+					raise "Cant understand '#{k}' => '#{v}'"
+			end
 		}.join(' ') unless params.nil?
 
-		system "bash #{CODECOV_DESTINATION} #{flags || ''}"
+		command = "bash #{self.CODECOV_DESTINATION} #{flags || ''}"
+
+		puts "Running: #{command}"
+		system command
 	end
 
 	##
@@ -86,9 +99,9 @@ module Codecov
 	# already exists
 	##
 	def self.download_script()
-		unless File.file? CODECOV_DESTINATION
-			download = open(SCRIPT_ENDPOINT)
-			IO.copy_stream(download, CODECOV_DESTINATION)
+		unless File.file? self.CODECOV_DESTINATION
+			download = open(self.SCRIPT_ENDPOINT)
+			IO.copy_stream(download, self.CODECOV_DESTINATION)
 		end
 	end
 
