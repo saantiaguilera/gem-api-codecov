@@ -12,9 +12,7 @@ If you were using bash, you would do a simple curl redirect into a shell (`bash 
 
 Add this line to your application's Gemfile:
 
-```ruby
-gem 'global-codecov'
-```
+    $ gem 'global-codecov'
 
 And then execute:
 
