@@ -24,7 +24,45 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Import
+
+Require the module:
+```ruby
+require 'codecov'
+```
+
+### Setting destination of script
+
+Use the provided setter
+```ruby
+Codecov.set_script_destination "somewhere/over/the/rainbow/file.sh"
+```
+
+### Running
+
+For running simply invoke
+```ruby
+Codecov.run
+```
+And thats it! It will be as running `bash <(https://www.codecov.io/bash)`
+
+#### Arguments
+
+If you wish to pass arguments to the bash script, pass them as a map of either `nil`, `String` or `Array`.
+
+Eg.
+```ruby
+params = {
+  'c' => nil,
+	'X' => [ 'glib', 'silent', 'test' ],
+	't' => 'access_token',
+	'root_dir' => '',
+	's' => nil,
+	'f' => [ 'file1.txt', 'file2.txt' ]
+}
+Codecov.run params
+```
+Will be: `bash <(https://www.codecov.io/bash) -c -X glib -X silent -X test -t access_token -root_dir '' -s -f file1.txt -f file2.txt`
 
 ## Development
 
