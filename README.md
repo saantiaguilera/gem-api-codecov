@@ -1,6 +1,6 @@
 # Codecov
 
-[![CircleCI](https://circleci.com/gh/saantiaguilera/ruby-api-codecov/tree/master.svg?style=svg)](https://circleci.com/gh/saantiaguilera/ruby-api-codecov/tree/master) [![codecov](https://codecov.io/gh/saantiaguilera/ruby-api-codecov/branch/master/graph/badge.svg)](https://codecov.io/gh/saantiaguilera/ruby-api-codecov) 
+[![CircleCI](https://circleci.com/gh/saantiaguilera/ruby-api-codecov/tree/master.svg?style=svg)](https://circleci.com/gh/saantiaguilera/ruby-api-codecov/tree/master) [![codecov](https://codecov.io/gh/saantiaguilera/ruby-api-codecov/branch/master/graph/badge.svg)](https://codecov.io/gh/saantiaguilera/ruby-api-codecov) [![Gem Version](https://badge.fury.io/rb/global-codecov.svg)](https://badge.fury.io/rb/global-codecov)
 
 This gem is for running codecov for any language (apart from ruby itself, since [their bash script doesnt support it yet](https://github.com/codecov/codecov-ruby/issues/4#issuecomment-121964456)) from a ruby script. 
 
