@@ -31,12 +31,14 @@ Require the module:
 require 'codecov'
 ```
 
-### Setting destination of script
+### Setting destination of the script
 
 Use the provided setter
 ```ruby
 Codecov.set_script_destination "somewhere/over/the/rainbow/file.sh"
 ```
+
+_Note_: The module will only download the file once, so that the overhead of the api is as low as possible
 
 ### Running
 
@@ -54,11 +56,11 @@ Eg.
 ```ruby
 params = {
   'c' => nil,
-	'X' => [ 'glib', 'silent', 'test' ],
-	't' => 'access_token',
-	'root_dir' => '',
-	's' => nil,
-	'f' => [ 'file1.txt', 'file2.txt' ]
+  'X' => [ 'glib', 'silent', 'test' ],
+  't' => 'access_token',
+  'root_dir' => '',
+  's' => nil,
+  'f' => [ 'file1.txt', 'file2.txt' ]
 }
 Codecov.run params
 ```
