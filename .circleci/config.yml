@@ -23,8 +23,8 @@ jobs:
       - run:
           name: create gem
           command: |
-            gem build *.gemspec
-            gem install codecov-*.gem
+            gem build global-codecov.gemspec
+            gem install global-codecov-*.gem
       - run:
           name: run codecov
           command: ruby .circleci/run_coverage.rb

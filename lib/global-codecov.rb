@@ -10,7 +10,7 @@ module Codecov
 	##
 	# Gem information
 	##
-	NAME = 'codecov'.freeze
+	NAME = 'global-codecov'.freeze
 	VERSION = '1.0.0'.freeze
 
 	class << self
@@ -21,7 +21,7 @@ module Codecov
 	##
 	# Codecov absolute file destionation
 	##
-	self.CODECOV_DESTINATION = "~/codecov_script.sh"
+	self.CODECOV_DESTINATION = "codecov_script.sh"
 
 	##
 	# Script endpoint from where to download the codecov file
@@ -37,7 +37,7 @@ module Codecov
 	# @param dest String with the absolute file path, used as destination
 	# for the bash script
 	#
-	# Defaults to "~/codecov_script.sh"
+	# Defaults to "codecov_script.sh"
 	##
 	def self.set_script_destination(dest)
 		self.CODECOV_DESTINATION = dest.to_s.shellescape

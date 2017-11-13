@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'codecov'
+require 'global-codecov'
 
 Codecov.set_script_destination 'codecov_script.sh'
 

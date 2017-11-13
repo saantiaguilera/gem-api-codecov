@@ -11,7 +11,7 @@ This gem is here for providing exactly that behavior.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'codecov'
+gem 'global-codecov'
 ```
 
 And then execute:
@@ -28,7 +28,7 @@ Or install it yourself as:
 
 Require the module:
 ```ruby
-require 'codecov'
+require 'global-codecov'
 ```
 
 ### Setting destination of the script
