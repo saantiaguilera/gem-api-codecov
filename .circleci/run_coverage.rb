@@ -2,4 +2,5 @@
 
 require 'codecov'
 
-Codecov.run { 't' => ENV['CODECOV_TOKEN'] }
+params = { 't' => ENV['CODECOV_TOKEN'] }
+Codecov.run params
