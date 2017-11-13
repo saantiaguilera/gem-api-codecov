@@ -83,6 +83,8 @@ module Codecov
 	end
 
 	##
+	# PRIVATE. This method is for the api, avoid using it
+	#
 	# Transforms the params into flags
 	# @param params nonnull map of <k,v>
 	##
@@ -96,7 +98,7 @@ module Codecov
 				when v.is_a?(String)
 					"-#{k.to_s.shellescape} #{v.to_s.shellescape}"
 				when v.is_a?(Array)
-					v.flat_map { |iv| [ "-#{k.to_s.shellescape}", iv.to_s.shellescape ] }[0..-1].join(' ')
+					v.map { |iv| "-#{k.to_s.shellescape} #{iv.to_s.shellescape}" }.join(' ')
 				else 
 					raise "Cant understand '#{k}' => '#{v}'"
 			end
