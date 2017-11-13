@@ -2,11 +2,11 @@
 
 [![CircleCI](https://circleci.com/gh/saantiaguilera/ruby-api-codecov/tree/master.svg?style=svg)](https://circleci.com/gh/saantiaguilera/ruby-api-codecov/tree/master) [![codecov](https://codecov.io/gh/saantiaguilera/ruby-api-codecov/branch/master/graph/badge.svg)](https://codecov.io/gh/saantiaguilera/ruby-api-codecov) 
 
-This gem is for running codecov for any language (apart from ruby itself, since [their bash script doesnt support it yet](https://github.com/codecov/codecov-ruby/issues/4#issuecomment-121964456)) from a ruby script.
+This gem is for running codecov for any language (apart from ruby itself, since [their bash script doesnt support it yet](https://github.com/codecov/codecov-ruby/issues/4#issuecomment-121964456)) from a ruby script. 
 
-If you were using bash, you would do a simple curl redirect into a shell (`bash <(curl -s http://some.bash.script.com)`). But this cant be done from ruby since the redirect isnt available.
+The point of this nonsense is that a lot of frameworks for continuous integration (eg. fastlane) are written in ruby. This is a tool for running your coverage under those circumstances
 
-This gem is here for providing exactly that behavior.
+If you were using bash, you would do a simple curl redirect into a shell (`bash <(curl -s http://some.bash.script.com)`). But this cant be done from ruby since the redirect isnt available, this gem is here for providing exactly that behavior.
 
 ## Installation
 
