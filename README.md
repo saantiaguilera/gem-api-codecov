@@ -1,6 +1,6 @@
 # Codecov
 
-This gem is for running codecov from a ruby script.
+This gem is for running codecov for any language (apart from ruby, since [their bash script yet doesnt support it](https://github.com/codecov/codecov-ruby/issues/4#issuecomment-121964456)) from a ruby script.
 
 If you were using bash, you would do a simple curl redirect into a shell (`bash <(curl -s http://some.bash.script.com)`). But this cant be done from ruby since the redirect isnt available.
 
