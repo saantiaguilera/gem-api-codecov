@@ -21,7 +21,7 @@ module Codecov
 	##
 	# Codecov absolute file destionation
 	##
-	self.CODECOV_DESTINATION = "codecov_script.sh"
+	self.CODECOV_DESTINATION = "~/codecov_script.sh"
 
 	##
 	# Script endpoint from where to download the codecov file
@@ -49,17 +49,19 @@ module Codecov
 	# Runs codecov
 	#
 	# @params map with parameters for codecov
+	# @returns command ran
 	# Eg.
 	# params = { 
 	#   'c' => nil,
+	#   'empty' => '',
 	#   'X' => [ 'gcov', 'coveragepy', 'fix' ],
 	#   'R' => 'root_dir',
 	#   't' => 'MY_ACCESS_TOKEN'
 	# }
 	# 
 	# Translates to:
-	# bash <(http://codecov.io/bash) -c -X gcov -X coveragepy -X fix
-	#        -R root_dir -t MY_ACCESS_TOKEN
+	# bash <(http://codecov.io/bash) -c -empty '' -X gcov -X coveragepy
+	#        -X fix -R root_dir -t MY_ACCESS_TOKEN
 	#
 	# Notes: This will shellescape ALL, since this is still a shell
 	# so using $MY_VAR wont work. If you want to pass a variable
@@ -71,24 +73,34 @@ module Codecov
 	def self.run(params = nil)
 		download_script unless File.file? self.CODECOV_DESTINATION
 
-		flags = params.map { |k,v|
-			puts "reading #{k} - #{v}"
+		flags = ''
+		flags << as_flags(params) unless params.nil?
+
+		command = "bash #{self.CODECOV_DESTINATION} #{flags}"
+
+		system command
+		return command
+	end
+
+	##
+	# Transforms the params into flags
+	# @param params nonnull map of <k,v>
+	##
+	def self.as_flags(params)
+		return '' if params.nil?
+
+		return params.map { |k,v|
 			case
 				when v.nil?
 					"-#{k.to_s.shellescape}"
 				when v.is_a?(String)
 					"-#{k.to_s.shellescape} #{v.to_s.shellescape}"
 				when v.is_a?(Array)
-					v.flat_map { |iv| [ "-#{k.to_s.shellescape}", iv.to_s.shellescape ] }[0...-1].join(' ')
+					v.flat_map { |iv| [ "-#{k.to_s.shellescape}", iv.to_s.shellescape ] }[0..-1].join(' ')
 				else 
 					raise "Cant understand '#{k}' => '#{v}'"
 			end
-		}.join(' ') unless params.nil?
-
-		command = "bash #{self.CODECOV_DESTINATION} #{flags || ''}"
-
-		puts "Running: #{command}"
-		system command
+		}.join(' ')
 	end
 
 	##
