@@ -18,11 +18,17 @@ jobs:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       - run:
+          name: into repository
+          command: cd repo
+      - run:
           name: run tests
           command: rake
       - run:
-         name: create gem
-         command: rake install
+          name: create gem
+          command: rake install
       - run:
-         name: run codecov
-         command: ruby .circleci/run_coverage.rb
+          name: run codecov
+          command: ruby .circleci/run_coverage.rb
+      - run:
+          name: out of repository
+          command: cd .. >/dev/null
