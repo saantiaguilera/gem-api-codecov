@@ -7,16 +7,16 @@ require 'open-uri'
 ##
 module Codecov
   
-  ##
-  # Gem information
-  ##
+	##
+	# Gem information
+	##
 	NAME = 'codecov'.freeze
 	VERSION = '1.0.0'.freeze
 
 	class << self
-    attr_accessor :CODECOV_DESTINATION
-    attr_accessor :SCRIPT_ENDPOINT
-  end
+		attr_accessor :CODECOV_DESTINATION
+		attr_accessor :SCRIPT_ENDPOINT
+	end
 
 	##
 	# Codecov absolute file destionation
