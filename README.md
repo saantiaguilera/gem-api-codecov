@@ -1,24 +1,22 @@
 # Codecov
 
-[![CircleCI](https://circleci.com/gh/saantiaguilera/ruby-api-codecov/tree/master.svg?style=svg)](https://circleci.com/gh/saantiaguilera/ruby-api-codecov/tree/master) [![codecov](https://codecov.io/gh/saantiaguilera/ruby-api-codecov/branch/master/graph/badge.svg)](https://codecov.io/gh/saantiaguilera/ruby-api-codecov) 
+[![CircleCI](https://circleci.com/gh/saantiaguilera/ruby-api-codecov/tree/master.svg?style=svg)](https://circleci.com/gh/saantiaguilera/ruby-api-codecov/tree/master) [![codecov](https://codecov.io/gh/saantiaguilera/ruby-api-codecov/branch/master/graph/badge.svg)](https://codecov.io/gh/saantiaguilera/ruby-api-codecov) [![Gem Version](https://badge.fury.io/rb/global-codecov.svg)](https://badge.fury.io/rb/global-codecov)
 
-This gem is for running codecov for any language (apart from ruby itself, since [their bash script doesnt support it yet](https://github.com/codecov/codecov-ruby/issues/4#issuecomment-121964456)) from a ruby script.
+This gem is for running codecov for any language (apart from ruby itself, since [their bash script doesnt support it yet](https://github.com/codecov/codecov-ruby/issues/4#issuecomment-121964456)) from a ruby script. 
 
-If you were using bash, you would do a simple curl redirect into a shell (`bash <(curl -s http://some.bash.script.com)`). But this cant be done from ruby since the redirect isnt available.
+The point of this nonsense is that a lot of frameworks for continuous integration (eg. fastlane) are written in ruby. This is a tool for running your coverage under those circumstances
 
-This gem is here for providing exactly that behavior.
+If you were using bash, you would do a simple curl redirect into a shell (`bash <(curl -s http://some.bash.script.com)`). But this cant be done from ruby since the redirect isnt available, this gem is here for providing exactly that behavior.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-```ruby
-gem 'global-codecov'
-```
+    $ gem 'global-codecov'
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -76,7 +74,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/codecov. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/saantiaguilera/ruby-api-codecov. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -84,4 +82,4 @@ The gem is available as open source under the terms of the [BSD-3 License](https
 
 ## Code of Conduct
 
-Everyone interacting in the Codecov project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/codecov/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Codecov project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/saantiaguilera/ruby-api-codecov/blob/master/CODE_OF_CONDUCT.md).
