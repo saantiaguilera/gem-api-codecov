@@ -19,12 +19,9 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       - run:
           name: run tests
-          command: rake
+          command: bundle exec rspec
       - run:
           name: run gem creation
           command: |
             gem build global-codecov.gemspec
             gem install global-codecov-*.gem
-      - run:
-          name: run codecov
-          command: ruby .circleci/run_coverage.rb

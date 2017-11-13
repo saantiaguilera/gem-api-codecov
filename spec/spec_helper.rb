@@ -1,6 +1,7 @@
-require "bundler/setup"
-require "codecov"
+require 'bundler/setup'
+require 'global-codecov'
 require 'simplecov'
+require 'codecov'
 
 RSpec.configure do |config|
 	SimpleCov.start
